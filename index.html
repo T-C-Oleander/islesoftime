@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISLES OF TIME — CONTINUANCE ARCHIVE</title>
+  <link rel="stylesheet" href="style-base.css">
+  <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-overlay);
+      user-select: none;
+    }
+
+    /* -------------------------------------------------------------------------
+       BOOT SCREEN WRAPPER
+       -- receives CRT animation on initiate
+       ------------------------------------------------------------------------- */
+
+    #boot-screen {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform-origin: center center;
+    }
+
+    #boot-screen.crt-animate {
+      animation: crt-boot 600ms ease-in-out forwards,
+                 crt-resolve 400ms ease forwards 600ms;
+    }
+
+    #boot-screen.flicker {
+      animation: flicker 1.2s ease forwards;
+    }
+
+    /* -------------------------------------------------------------------------
+       BOOT CONTENT -- centered column
+       ------------------------------------------------------------------------- */
+
+    .boot-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      text-align: center;
+    }
+
+    .boot-identity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .boot-heading {
+      font-family: var(--font-ui);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .boot-heading span {
+      color: var(--accent);
+    }
+
+    .boot-sub {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: var(--tracking-widest);
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .boot-divider {
+      width: 240px;
+      height: 1px;
+      background: var(--border-accent);
+    }
+
+    /* -------------------------------------------------------------------------
+       INITIATE BUTTON
+       ------------------------------------------------------------------------- */
+
+    .boot-btn {
+      font-family: var(--font-ui);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(90, 159, 197, 0.06);
+      border: 1px solid var(--accent-dim);
+      border-left: 2px solid var(--accent);
+      padding: 11px 40px;
+      cursor: pointer;
+      clip-path: var(--clip-double-md);
+      transition: color var(--transition-fast),
+                  background var(--transition-fast),
+                  border-color var(--transition-fast);
+    }
+
+    .boot-btn:hover {
+      color: var(--text-primary);
+      background: rgba(90, 159, 197, 0.13);
+      border-color: var(--accent);
+      border-left-color: var(--accent-bright);
+    }
+
+    .boot-btn:active {
+      background: rgba(90, 159, 197, 0.20);
+    }
+
+    .boot-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* -------------------------------------------------------------------------
+       SKIP LINK
+       ------------------------------------------------------------------------- */
+
+    .boot-skip {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-ghost);
+      cursor: pointer;
+      border-bottom: 1px solid transparent;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      padding: 0;
+    }
+
+    .boot-skip:hover {
+      color: var(--text-muted);
+      border-bottom-color: var(--text-ghost);
+    }
+
+    /* Version / node label */
+    .boot-node-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-ghost);
+      letter-spacing: 0.08em;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<div id="boot-screen">
+  <div class="boot-inner">
+
+    <div class="boot-identity">
+      <div class="boot-heading">FIDES UNITATIS &mdash; <span>RENATUS</span></div>
+      <div class="boot-sub">CONTINUANCE ARCHIVE &nbsp;/&nbsp; NODE ACCESS</div>
+    </div>
+
+    <div class="boot-divider"></div>
+
+    <button class="boot-btn" id="initiate-btn" onclick="initiate()">
+      [ INITIATE CONNECTION ]
+    </button>
+
+    <button class="boot-skip" id="skip-btn" onclick="skipToArchive()">
+      skip boot sequence
+    </button>
+
+    <div class="boot-node-label" id="boot-node-label">ATLAS DIRECTIVE &nbsp;/&nbsp; ISLES OF TIME</div>
+
+  </div>
+</div>
+
+<script>
+// =============================================================================
+// BOOT SEQUENCE
+// =============================================================================
+
+const ARCHIVE_URL = 'continuance/index.html';
+const BOOTED_KEY  = 'archive_booted';
+
+// Audio elements -- populated when files exist.
+// Files expected at assets/audio/
+const AUDIO = {
+  fan:  null,  // fan-spinup.mp3
+  hdd:  null,  // hdd-click.mp3
+  boot: null   // boot-sequence.mp3
+};
+
+// Try to preload audio. Fails silently if files don't exist yet.
+(function preloadAudio() {
+  const base = '../assets/audio/';
+  function tryLoad(src) {
+    const a = new Audio();
+    a.preload = 'auto';
+    a.src = base + src;
+    return a;
+  }
+  try {
+    AUDIO.fan  = tryLoad('fan-spinup.mp3');
+    AUDIO.hdd  = tryLoad('hdd-click.mp3');
+    AUDIO.boot = tryLoad('boot-sequence.mp3');
+  } catch (e) {
+    // Audio not available — sequence runs silently
+  }
+})();
+
+// If previously booted, redirect immediately (skip is the default for returns).
+(function checkBooted() {
+  if (localStorage.getItem(BOOTED_KEY)) {
+    window.location.replace(ARCHIVE_URL);
+  }
+})();
+
+let _initiating = false;
+
+function initiate() {
+  if (_initiating) return;
+  _initiating = true;
+
+  const btn = document.getElementById('initiate-btn');
+  btn.disabled = true;
+  btn.textContent = '[ CONNECTING… ]';
+
+  // Play audio sequence
+  playAudioSequence();
+
+  // Flicker → CRT boot → redirect
+  const screen = document.getElementById('boot-screen');
+  screen.classList.add('flicker');
+
+  setTimeout(() => {
+    screen.classList.remove('flicker');
+    screen.classList.add('crt-animate');
+  }, 1200);
+
+  setTimeout(() => {
+    localStorage.setItem(BOOTED_KEY, '1');
+    window.location.assign(ARCHIVE_URL);
+  }, 3500);
+}
+
+function playAudioSequence() {
+  function play(el, volume, delay) {
+    if (!el) return;
+    setTimeout(() => {
+      el.volume = volume;
+      el.play().catch(() => {}); // user may have audio blocked
+    }, delay);
+  }
+  play(AUDIO.fan,  0.6, 0);
+  play(AUDIO.hdd,  0.6, 800);
+  play(AUDIO.boot, 1.0, 1200);
+}
+
+function skipToArchive() {
+  localStorage.setItem(BOOTED_KEY, '1');
+  window.location.assign(ARCHIVE_URL);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONTINUANCE ARCHIVE — LODESTONE</title>
+  <link rel="stylesheet" href="../style-base.css">
+  <link rel="stylesheet" href="style-archive.css">
+</head>
+<body>
+
+<div class="arc-root">
+
+  <!-- =========================================================================
+       TITLEBAR
+       ========================================================================= -->
+  <div class="arc-titlebar">
+
+    <div class="arc-titlebar-left">
+      <div class="arc-titlebar-identity">CONTINUANCE <span>ARCHIVE</span></div>
+      <div class="arc-titlebar-sep"></div>
+      <div class="arc-titlebar-node">LODESTONE / NODE ACCESS</div>
+    </div>
+
+    <div class="arc-titlebar-right">
+      <div class="arc-titlebar-soul">Preserve. Record. Reconcile.</div>
+    </div>
+
+  </div>
+
+  <!-- =========================================================================
+       TWO-COLUMN LAYOUT
+       ========================================================================= -->
+  <div class="arc-layout">
+
+    <!-- =======================================================================
+         NAV PANEL -- left column
+         ======================================================================= -->
+    <nav class="arc-nav" role="navigation" aria-label="Document index">
+
+      <div class="arc-nav-header-bar">
+        <span class="arc-nav-header-bar-label">LODESTONE</span>
+        <span class="arc-nav-count" id="nav-doc-count">—</span>
+      </div>
+
+      <div class="arc-nav-search-bar">
+        <input
+          class="arc-nav-search-input"
+          id="nav-search"
+          type="search"
+          placeholder="search title, ref, org code"
+          autocomplete="off"
+          spellcheck="false"
+          oninput="filterNav()">
+      </div>
+
+      <div class="arc-nav-filters" id="nav-filters"></div>
+
+      <div class="arc-nav-scroll" id="nav-scroll">
+        <div class="arc-nav-pending">LODESTONE INDEXING&hellip;</div>
+      </div>
+
+    </nav>
+
+    <!-- =======================================================================
+         MAIN CONTENT -- document viewer
+         ======================================================================= -->
+    <main class="arc-main" role="main">
+
+      <!-- Document header bar -->
+      <div class="arc-doc-header">
+        <div class="arc-doc-header-main">
+          <div class="arc-doc-ref">&mdash;</div>
+          <div class="arc-doc-title">SELECT A DOCUMENT</div>
+          <div class="arc-meta-row"></div>
+        </div>
+        <div class="arc-verify">
+          <span class="status-dot unverified"></span>
+          <span class="arc-verify-state unverified">—</span>
+          <span class="arc-verify-label">Verification</span>
+        </div>
+      </div>
+
+      <!-- Scrollable doc body -->
+      <div class="arc-content-row">
+        <div class="arc-doc-body selectable" id="doc-body">
+          <div class="arc-welcome">
+            <div class="arc-welcome-title">LODESTONE</div>
+            <div class="arc-welcome-sub">select a document from the index</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document footer -->
+      <div class="arc-doc-footer">
+        <span class="arc-seal-code"></span>
+        <span class="arc-human-imprint">HUMAN IMPRINT: DIGITAL COPY</span>
+      </div>
+
+    </main>
+
+  </div><!-- /arc-layout -->
+
+  <!-- =========================================================================
+       STATUSBAR
+       ========================================================================= -->
+  <div class="arc-statusbar" role="status" aria-live="polite">
+    <div class="arc-statusbar-left">
+      <div class="arc-statusbar-item"><span>DOCUMENTS</span> &nbsp;&mdash;</div>
+      <div class="arc-statusbar-sep"></div>
+      <div class="arc-statusbar-item"><span>ERA</span> &nbsp;&mdash;</div>
+      <div class="arc-statusbar-sep"></div>
+      <div class="arc-statusbar-item"><span>VERIFICATION</span> &nbsp;&mdash;</div>
+    </div>
+    <div class="arc-statusbar-right">
+      <div class="arc-statusbar-item">FIDES UNITATIS &nbsp;/&nbsp; RENATUS</div>
+      <div class="arc-statusbar-sep"></div>
+      <div class="arc-statusbar-item">ATLAS DIRECTIVE</div>
+    </div>
+  </div>
+
+</div><!-- /arc-root -->
+
+<script src="renderer.js"></script>
+
+</body>
+</html>
