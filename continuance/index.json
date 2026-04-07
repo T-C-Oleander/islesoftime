@@ -1,6 +1,13 @@
 {
   "documents": [
     {
+      "ref": "AAA-E00-D0001",
+      "file": "documents/AAA-E00-D0001.txt",
+      "title": "AN EXPLANATION ON WHAT THIS IS ABOUT",
+      "era": "E00",
+      "verification": "SOURCE"
+    },
+    {
       "ref": "UCE-E00-D0001",
       "file": "documents/UCE-E00-D0001.txt",
       "title": "ON THE CONSTITUTION OF THE UNITED COLONIES OF EARTH",
@@ -8,9 +15,58 @@
       "verification": "SOURCE"
     },
     {
-      "ref": "AAA-E00-D0001",
-      "file": "documents/AAA-E00-D0001.txt",
-      "title": "AN EXPLANATION ON WHAT THIS IS ABOUT",
+      "ref": "UCE-E00-D0002",
+      "file": "documents/UCE-E00-D0002.txt",
+      "title": "THE FAILSAFE PROTOCOL -- UCE RATIFICATION INSTRUMENT",
+      "era": "E00",
+      "verification": "SOURCE"
+    },   
+    {
+      "ref": "UCE-E00-D0003",
+      "file": "documents/UCE-E00-D0003.txt",
+      "title": "THE CITADEL DOCTRINE",
+      "era": "E00",
+      "verification": "SOURCE"
+    },  
+    {
+      "ref": "UCE-E00-D0004",
+      "file": "documents/UCE-E00-D0004.txt",
+      "title": "THE DEFENSIVE ARCHITECTURE DOCTRINE",
+      "era": "E00",
+      "verification": "SOURCE"
+    },
+    {
+      "ref": "UCE-E00-D0005",
+      "file": "documents/UCE-E00-D0005.txt",
+      "title": "THE ENTROPY ACCORDS",
+      "era": "E00",
+      "verification": "SOURCE"
+    },   
+    {
+      "ref": "UCE-E00-D0006",
+      "file": "documents/UCE-E00-D0006.txt",
+      "title": "THE THREE PILLARS -- INSTITUTIONAL DESIGNATIONS",
+      "era": "E00",
+      "verification": "SOURCE"
+    },  
+    {
+      "ref": "UCE-E00-D0007",
+      "file": "documents/UCE-E00-D0007.txt",
+      "title": "DESIGNATED CONFLICT CONTAINMENT ZONES -- FOUNDING DOCTRINE",
+      "era": "E00",
+      "verification": "SOURCE"
+    },
+    {
+      "ref": "UCE-E00-D0008",
+      "file": "documents/UCE-E00-D0008.txt",
+      "title": "GOVERNANCE STRUCTURE AND ADMINISTRATIVE FRAMEWORK",
+      "era": "E00",
+      "verification": "SOURCE"
+    },
+    {
+      "ref": "UCE-E00-D0009",
+      "file": "documents/UCE-E00-D0009.txt",
+      "title": "WHAT WAS BUILT. WHAT IT COST.",
       "era": "E00",
       "verification": "SOURCE"
     }

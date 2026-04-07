@@ -1,0 +1,219 @@
+================================================================================
+UNITED COLONIES OF EARTH -- CONTINUANCE INSTRUMENT
+================================================================================
+DOCUMENT REF   : UCE-E00-D0004
+ISSUING AUTH   : UNITED COLONIES OF EARTH / FOUNDING ASSEMBLY
+SUBJECT        : DEFENSIVE ARCHITECTURE / FOUNDATIONAL DOCTRINE
+DOCUMENT TITLE : THE DEFENSIVE ARCHITECTURE DOCTRINE
+FILE DATE      : 01 JANUARY 0001 AD / 00:00 UST
+EARTH REF      : 01 JANUARY 2107 EST
+CLASSIFICATION : CONTINUANCE PRIORITY / CORE FILINGS
+VERIFICATION   : SOURCE
+SEAL STATUS    : ACTIVE / OPEN / PERMANENT
+================================================================================
+FIDES UNITATIS -- RENATUS
+Preserve.  Record.  Reconcile.
+================================================================================
+
+NOTE ON THIS FILING:
+
+The Defensive Architecture Doctrine was first ratified in 2090 CE as
+part of the post-war reconstruction framework. It emerged from the
+same conditions that produced the Failsafe Protocol and the Citadel
+Doctrine -- not as a military document, but as an architectural one.
+
+The question it answers is not how to win wars.
+The question it answers is how to make wars not worth starting.
+
+The UCE files this doctrine as foundational law alongside the Citadel
+Doctrine. They are the same principle from two directions: one
+governs how to build survival, the other governs how to protect it.
+
+================================================================================
+[ PREAMBLE ]
+================================================================================
+
+The Resource Wars did not end because one side won.
+They ended because there was nothing left to win.
+
+Four billion people were dead. The orbital infrastructure had
+been cut. The supply lines were gone. The belligerents did not
+stop because they chose peace. They stopped because continuing
+required resources they no longer had.
+
+The Defensive Architecture Doctrine exists so that this is never
+again the only way wars end.
+
+The doctrine does not believe war can be eliminated. The record
+does not support that belief. The doctrine believes war can be
+made economically irrational -- that if the cost of initiating
+conflict reliably exceeds any conceivable gain from it, then
+the rational actor will not initiate.
+
+The doctrine is built for rational actors. The record contains
+evidence that not all actors are rational. That is filed. That
+is what the Failsafe Protocol is for. That is what Invictus is for.
+
+================================================================================
+[ MANDATE STATEMENT ]
+================================================================================
+
+The Defensive Architecture Doctrine is the UCE's formal framework
+for military and defensive philosophy. It governs how the UCE
+structures its defensive capacity, where it deploys that capacity,
+and what principles constrain its use.
+
+The central principle:
+
+    The cost of war must exceed the cost of peace.
+
+This is not a moral statement. It is an engineering requirement.
+The UCE does not ask adversaries to be peaceful. The UCE engineers
+conditions under which aggression is unprofitable. The distinction
+matters. One requires goodwill. The other requires only that the
+adversary is capable of arithmetic.
+
+================================================================================
+[ CORE PROVISIONS ]
+================================================================================
+
+--------------------------------------------------------------------------------
+I.   DEFENSIVE POSTURE AS DEFAULT
+--------------------------------------------------------------------------------
+
+The UCE does not build offensive military capacity as a primary
+instrument. Offensive capacity is a resource sink with diminishing
+returns -- armies built to conquer require ongoing maintenance,
+political justification, and logistical infrastructure that consumes
+what the UCE exists to preserve.
+
+Defensive capacity is an investment. A Citadel that cannot be taken
+requires no campaign to hold. A supply network that cannot be
+disrupted does not need to be protected by military force.
+
+The UCE builds walls, not armies.
+The walls are better.
+
+This does not mean the UCE cannot project force. It means the UCE
+does not build military systems whose primary purpose is projection.
+The capability exists where it is necessary. It is documented.
+It is bounded. The bounds are in this instrument.
+
+--------------------------------------------------------------------------------
+II.  DESIGNATED CONFLICT CONTAINMENT ZONES
+--------------------------------------------------------------------------------
+
+Not all conflict can be prevented. The record does not suggest
+otherwise. Where conflict is unavoidable, the DAD establishes
+the principle of geographic containment -- that conflict is more
+survivable when it is bounded, when its spread is architecturally
+resisted, and when the civilian population outside the conflict
+zone has infrastructure that does not depend on the conflict zone
+remaining stable.
+
+The Designated Conflict Containment Zones are the formal expression
+of this principle. They are not prisons. They are not punishment.
+They are the boundaries of what the UCE can hold stable and the
+honest acknowledgment of what it cannot.
+
+See UCE-E00-D0007 for the DCCZ founding doctrine.
+
+The classified instrument that preceded the DCCZ framework --
+the document by which the First Council made the specific decisions
+about resource allocation in the immediate post-war period -- is
+filed separately under restricted classification. Its existence
+is acknowledged here. Its contents are not reproduced. The record
+knows what it contains. The record will always know.
+
+--------------------------------------------------------------------------------
+III. THE DETERRENCE PRINCIPLE
+--------------------------------------------------------------------------------
+
+The UCE maintains deterrence capacity at three tiers:
+
+    TIER ONE -- Architectural deterrence.
+    The Citadels themselves. The cost of taking a Citadel must
+    exceed the value of holding one. This is the foundational
+    deterrence layer. It requires no active deployment. It
+    requires only that the Citadels be built correctly.
+
+    TIER TWO -- Network deterrence.
+    The supply and logistics infrastructure managed by ELMOC.
+    An adversary who depends on UCE logistics to sustain their
+    population cannot sustain a campaign against UCE infrastructure
+    without destroying their own supply base. Mutual dependency
+    is deterrence. ELMOC does not conduct military operations.
+    ELMOC does not need to.
+
+    TIER THREE -- Force deterrence.
+    Standing defensive capability, maintained at sufficient
+    scale to make the cost of military engagement prohibitive.
+    Not sufficient to pursue offensive campaigns. Sufficient
+    to ensure that anyone who initiates one pays a price that
+    cannot be recovered from the gain.
+
+    Beyond Tier Three, extraordinary deterrence assets exist
+    and are not named in this instrument. Their existence is
+    acknowledged. Their deployment conditions are filed under
+    separate classification. The record knows they exist.
+
+--------------------------------------------------------------------------------
+IV.  THE HUMAN HAND IN MILITARY DOCTRINE
+--------------------------------------------------------------------------------
+
+No autonomous system may make the decision to use lethal force
+against human populations.
+
+The machine may aim. The machine may calculate. The machine may
+optimize every variable in the decision chain except the final one.
+A human being authorizes the action. A human being carries the
+weight of it. A human being is in the record as the one who chose.
+
+This is not a technical limitation on weapons systems.
+It is a constraint on what the UCE permits itself to become.
+A military that outsources the authorization to kill to a system
+that cannot be held accountable for the killing has stopped
+understanding what it is doing.
+
+The UCE has not stopped understanding.
+The record will verify this.
+If the record cannot verify this, the record will contain that too.
+The record does not look away.
+
+================================================================================
+[ ON THE COST OF PEACE ]
+================================================================================
+
+The cost of maintaining defensive architecture is significant.
+The Citadels require resources. The logistics network requires
+maintenance. The deterrence tier requires personnel and infrastructure
+that produce nothing except the conditions under which everything else
+can produce something.
+
+This cost is real. It is documented. It is chosen.
+
+The alternative -- no Citadels, no deterrence, no containment
+framework -- has already been tried. The record of that attempt
+contains four billion names that were never fully recovered.
+
+The cost of peace is what the UCE pays so that the cost of war
+never has to be paid again. That trade has not yet been shown
+to be wrong. The record continues. The UCE pays the cost.
+
+================================================================================
+[ BENEDICTION ]
+================================================================================
+
+Preserve.
+Record.
+Reconcile.
+
+================================================================================
+FILED BY      : UNITED COLONIES OF EARTH / FOUNDING ASSEMBLY
+SEAL CODE     : UCE-E00-D0004 / "Worth preserving."
+VERIFICATION  : SOURCE
+HUMAN IMPRINT : Confirmed. Reviewed and authorized by human hand.
+                The hand is not named. The document is.
+================================================================================
+UCE FOUNDING RECORD -- END OF FILING
+================================================================================
