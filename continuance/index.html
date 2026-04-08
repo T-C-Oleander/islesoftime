@@ -89,23 +89,22 @@
             <div class="arc-welcome-sub">select a document from the index</div>
           </div>
         </div>
+      </div>
 
-        <!-- Audio panel -- slides in when document has audio -->
-        <div class="arc-audio-panel" id="audio-panel">
-          <div class="arc-audio-panel-header">
-            <span class="arc-audio-panel-label">AUDIO &nbsp;/&nbsp; <span>VIRIBUS</span></span>
-            <button class="arc-audio-close" id="audio-close" onclick="closeAudioPanel()" title="Close">&#x2715;</button>
-          </div>
-          <canvas class="arc-audio-canvas" id="audio-canvas"></canvas>
-          <div class="arc-audio-controls">
-            <button class="arc-audio-play-btn" id="audio-play-btn" onclick="toggleAudio()">PLAY</button>
-            <div class="arc-audio-progress-wrap">
-              <div class="arc-audio-progress-bar" id="audio-progress-bar"></div>
-            </div>
-            <span class="arc-audio-time" id="audio-time">0:00</span>
-          </div>
+      <!-- Audio panel -- floating box, top-right of main area -->
+      <div class="arc-audio-panel" id="audio-panel">
+        <div class="arc-audio-panel-header" id="audio-drag-handle">
+          <span class="arc-audio-panel-label">AUDIO &nbsp;/&nbsp; <span>VIRIBUS</span></span>
+          <button class="arc-audio-close" id="audio-close" onclick="closeAudioPanel()" title="Close">&#x2715;</button>
         </div>
-
+        <canvas class="arc-audio-canvas" id="audio-canvas"></canvas>
+        <div class="arc-audio-controls">
+          <button class="arc-audio-play-btn" id="audio-play-btn" onclick="toggleAudio()">PLAY</button>
+          <div class="arc-audio-progress-wrap">
+            <div class="arc-audio-progress-bar" id="audio-progress-bar"></div>
+          </div>
+          <span class="arc-audio-time" id="audio-time">0:00</span>
+        </div>
       </div>
 
       <!-- Document footer -->

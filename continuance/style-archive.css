@@ -726,12 +726,21 @@
 .arc-audio-panel {
   display: none;
   flex-direction: column;
+  position: absolute;
+  top: 88px;
+  right: 24px;
   width: 220px;
-  min-width: 220px;
-  flex-shrink: 0;
-  background: var(--bg-secondary);
-  border-left: 1px solid var(--border-primary);
+  height: 200px;
+  min-width: 160px;
+  min-height: 130px;
+  resize: both;
   overflow: hidden;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-accent);
+  border-top: 2px solid var(--accent-dim);
+  clip-path: none;
+  z-index: 20;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 
 .arc-audio-panel.open {
@@ -747,6 +756,8 @@
   background: var(--bg-tertiary);
   border-bottom: 1px solid var(--border-accent);
   flex-shrink: 0;
+  cursor: move;
+  user-select: none;
 }
 
 .arc-audio-panel-label {

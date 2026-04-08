@@ -691,3 +691,41 @@ function resizeCanvas() {
 }
 
 window.addEventListener('resize', resizeCanvas);
+
+// Drag-to-move the audio panel
+(function() {
+  const handle = document.getElementById('audio-drag-handle');
+  const panel  = document.getElementById('audio-panel');
+  if (!handle || !panel) return;
+
+  let dragging = false, startX, startY, startLeft, startTop;
+
+  handle.addEventListener('mousedown', e => {
+    if (e.target.closest('.arc-audio-close')) return;
+    dragging = true;
+    const rect = panel.getBoundingClientRect();
+    startX    = e.clientX;
+    startY    = e.clientY;
+    startLeft = rect.left;
+    startTop  = rect.top;
+    panel.style.right  = 'auto';
+    panel.style.bottom = 'auto';
+    panel.style.left   = startLeft + 'px';
+    panel.style.top    = startTop  + 'px';
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    panel.style.left = (startLeft + e.clientX - startX) + 'px';
+    panel.style.top  = (startTop  + e.clientY - startY) + 'px';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    document.body.style.userSelect = '';
+    resizeCanvas();
+  });
+})();
