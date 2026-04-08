@@ -15,4 +15,7 @@ Full license: LICENSE.txt
 CODE
 
 The HTML/CSS/JS structure of this site is freely available
-for personal and educational use with attribution.
+for personal and educational use with attribution. 
+
+Bring back functional and amazing websites with personality 
+again!
