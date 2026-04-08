@@ -67,21 +67,23 @@
          ======================================================================= -->
     <main class="arc-main" role="main">
 
-      <!-- Document header bar -->
+      <!-- Document header -- left column only -->
       <div class="arc-doc-header">
         <div class="arc-doc-header-main">
           <div class="arc-doc-ref">&mdash;</div>
           <div class="arc-doc-title">SELECT A DOCUMENT</div>
           <div class="arc-meta-row"></div>
         </div>
-        <div class="arc-verify">
-          <span class="status-dot unverified"></span>
-          <span class="arc-verify-state unverified">—</span>
-          <span class="arc-verify-label">Verification</span>
-        </div>
       </div>
 
-      <!-- Scrollable doc body -->
+      <!-- Verify badge -- right column, row 1 -->
+      <div class="arc-verify">
+        <span class="status-dot unverified"></span>
+        <span class="arc-verify-state unverified">—</span>
+        <span class="arc-verify-label">Verification</span>
+      </div>
+
+      <!-- Scrollable doc body -- left column, row 2 -->
       <div class="arc-content-row">
         <div class="arc-doc-body selectable" id="doc-body">
           <div class="arc-welcome">
@@ -91,12 +93,8 @@
         </div>
       </div>
 
-      <!-- Audio panel -- floating box, top-right of main area -->
+      <!-- Audio panel -- right column, row 2. hidden until doc has audio -->
       <div class="arc-audio-panel" id="audio-panel">
-        <div class="arc-audio-panel-header" id="audio-drag-handle">
-          <span class="arc-audio-panel-label">AUDIO &nbsp;/&nbsp; <span>VIRIBUS</span></span>
-          <button class="arc-audio-close" id="audio-close" onclick="closeAudioPanel()" title="Close">&#x2715;</button>
-        </div>
         <canvas class="arc-audio-canvas" id="audio-canvas"></canvas>
         <div class="arc-audio-controls">
           <button class="arc-audio-play-btn" id="audio-play-btn" onclick="toggleAudio()">PLAY</button>
@@ -104,10 +102,11 @@
             <div class="arc-audio-progress-bar" id="audio-progress-bar"></div>
           </div>
           <span class="arc-audio-time" id="audio-time">0:00</span>
+          <button class="arc-audio-close" id="audio-close" onclick="closeAudioPanel()" title="Close">&#x2715;</button>
         </div>
       </div>
 
-      <!-- Document footer -->
+      <!-- Document footer -- spans full width -->
       <div class="arc-doc-footer">
         <span class="arc-seal-code"></span>
         <span class="arc-human-imprint">HUMAN IMPRINT: DIGITAL COPY</span>
@@ -132,6 +131,8 @@
       <div class="arc-statusbar-item">FIDES UNITATIS &nbsp;/&nbsp; RENATUS</div>
       <div class="arc-statusbar-sep"></div>
       <div class="arc-statusbar-item">ATLAS DIRECTIVE</div>
+      <div class="arc-statusbar-sep"></div>
+      <div class="arc-statusbar-item arc-built-with">Built with <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></div>
     </div>
   </div>
 

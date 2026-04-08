@@ -656,28 +656,38 @@ function drawWaveform() {
   const ctx    = canvas.getContext('2d');
   const W      = canvas.width;
   const H      = canvas.height;
-  const data   = new Uint8Array(_analyser.frequencyBinCount);
+  const data   = new Uint8Array(_analyser.fftSize);
 
   function frame() {
     _rafId = requestAnimationFrame(frame);
-    _analyser.getByteFrequencyData(data);
+    _analyser.getByteTimeDomainData(data);
 
     ctx.clearRect(0, 0, W, H);
     ctx.fillStyle = '#0a0c0f';
     ctx.fillRect(0, 0, W, H);
 
-    const barCount = data.length;
-    const barW     = W / barCount;
-    const accent   = '#3a5a7a';
-    const accentHi = '#5a9fc5';
+    // Centre line
+    ctx.strokeStyle = '#1e2530';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, H / 2);
+    ctx.lineTo(W, H / 2);
+    ctx.stroke();
 
-    for (let i = 0; i < barCount; i++) {
-      const v   = data[i] / 255;
-      const h   = v * H;
-      const x   = i * barW;
-      ctx.fillStyle = v > 0.6 ? accentHi : accent;
-      ctx.fillRect(x, H - h, barW - 1, h);
+    // Waveform
+    ctx.strokeStyle = '#5a9fc5';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    const sliceW = W / data.length;
+    let x = 0;
+    for (let i = 0; i < data.length; i++) {
+      const v = data[i] / 128.0;
+      const y = (v * H) / 2;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+      x += sliceW;
     }
+    ctx.stroke();
   }
   frame();
 }
@@ -692,40 +702,3 @@ function resizeCanvas() {
 
 window.addEventListener('resize', resizeCanvas);
 
-// Drag-to-move the audio panel
-(function() {
-  const handle = document.getElementById('audio-drag-handle');
-  const panel  = document.getElementById('audio-panel');
-  if (!handle || !panel) return;
-
-  let dragging = false, startX, startY, startLeft, startTop;
-
-  handle.addEventListener('mousedown', e => {
-    if (e.target.closest('.arc-audio-close')) return;
-    dragging = true;
-    const rect = panel.getBoundingClientRect();
-    startX    = e.clientX;
-    startY    = e.clientY;
-    startLeft = rect.left;
-    startTop  = rect.top;
-    panel.style.right  = 'auto';
-    panel.style.bottom = 'auto';
-    panel.style.left   = startLeft + 'px';
-    panel.style.top    = startTop  + 'px';
-    document.body.style.userSelect = 'none';
-    e.preventDefault();
-  });
-
-  document.addEventListener('mousemove', e => {
-    if (!dragging) return;
-    panel.style.left = (startLeft + e.clientX - startX) + 'px';
-    panel.style.top  = (startTop  + e.clientY - startY) + 'px';
-  });
-
-  document.addEventListener('mouseup', () => {
-    if (!dragging) return;
-    dragging = false;
-    document.body.style.userSelect = '';
-    resizeCanvas();
-  });
-})();
