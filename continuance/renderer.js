@@ -313,6 +313,7 @@ async function loadNavDocument(doc) {
   if (doc._loaded) {
     renderDocument(doc);
     setActiveNav(doc.filingCode.raw);
+    loadAudioPanel(doc.audioPath);
     return;
   }
   try {
@@ -320,10 +321,12 @@ async function loadNavDocument(doc) {
     const parsed = parseDocument(raw);
     parsed.raw = raw;
     parsed.filePath = doc.filePath;
+    parsed.audioPath = doc.audioPath;
     parsed._loaded = true;
     Object.assign(doc, parsed);
     renderDocument(doc);
     setActiveNav(doc.filingCode.raw);
+    loadAudioPanel(doc.audioPath);
   } catch (err) {
     console.error('Failed to load document:', doc.filePath, err);
     document.getElementById('doc-body').innerHTML =
@@ -383,6 +386,7 @@ async function initArchive() {
       sections: {},
       footer: { filedBy: '', sealCode: '', humanImprint: '' },
       compilation: null,
+      audioPath: entry.audio || null,
       _loaded: false
     };
     navIndex.push(doc);
@@ -526,3 +530,164 @@ function buildTagFilters(docs) {
 // =============================================================================
 
 document.addEventListener('DOMContentLoaded', initArchive);
+
+// =============================================================================
+// AUDIO PANEL -- waveform visualizer fed from document audio file
+// =============================================================================
+
+let _audioCtx      = null;
+let _analyser      = null;
+let _source        = null;
+let _audioEl       = null;
+let _rafId         = null;
+let _currentPath   = null;
+
+function loadAudioPanel(audioPath) {
+  const panel = document.getElementById('audio-panel');
+
+  if (!audioPath) {
+    closeAudioPanel();
+    return;
+  }
+
+  // Same file already loaded — don't restart
+  if (audioPath === _currentPath) {
+    panel.classList.add('open');
+    return;
+  }
+
+  _currentPath = audioPath;
+  stopAudio();
+  panel.classList.add('open');
+
+  _audioEl = new Audio(audioPath);
+  _audioEl.preload = 'auto';
+
+  _audioEl.addEventListener('timeupdate', updateProgress);
+  _audioEl.addEventListener('ended', () => {
+    document.getElementById('audio-play-btn').textContent = 'PLAY';
+    document.getElementById('audio-play-btn').classList.remove('playing');
+    document.getElementById('audio-progress-bar').style.width = '0%';
+    document.getElementById('audio-time').textContent = '0:00';
+  });
+
+  resizeCanvas();
+}
+
+window.closeAudioPanel = function() {
+  stopAudio();
+  _currentPath = null;
+  document.getElementById('audio-panel').classList.remove('open');
+};
+
+window.toggleAudio = function() {
+  if (!_audioEl) return;
+
+  if (_audioEl.paused) {
+    // Build audio context on first play (browser requires user gesture)
+    if (!_audioCtx) {
+      _audioCtx  = new (window.AudioContext || window.webkitAudioContext)();
+      _analyser  = _audioCtx.createAnalyser();
+      _analyser.fftSize = 256;
+      _source    = _audioCtx.createMediaElementSource(_audioEl);
+      _source.connect(_analyser);
+      _analyser.connect(_audioCtx.destination);
+    }
+    if (_audioCtx.state === 'suspended') _audioCtx.resume();
+    _audioEl.play();
+    document.getElementById('audio-play-btn').textContent = 'PAUSE';
+    document.getElementById('audio-play-btn').classList.add('playing');
+    drawWaveform();
+  } else {
+    _audioEl.pause();
+    document.getElementById('audio-play-btn').textContent = 'PLAY';
+    document.getElementById('audio-play-btn').classList.remove('playing');
+    cancelAnimationFrame(_rafId);
+  }
+};
+
+function stopAudio() {
+  if (_audioEl) {
+    _audioEl.pause();
+    _audioEl.src = '';
+    _audioEl = null;
+  }
+  if (_audioCtx) {
+    _audioCtx.close();
+    _audioCtx  = null;
+    _analyser  = null;
+    _source    = null;
+  }
+  cancelAnimationFrame(_rafId);
+  const btn = document.getElementById('audio-play-btn');
+  if (btn) { btn.textContent = 'PLAY'; btn.classList.remove('playing'); }
+  const bar = document.getElementById('audio-progress-bar');
+  if (bar) bar.style.width = '0%';
+  const time = document.getElementById('audio-time');
+  if (time) time.textContent = '0:00';
+}
+
+function updateProgress() {
+  if (!_audioEl || !_audioEl.duration) return;
+  const pct = (_audioEl.currentTime / _audioEl.duration) * 100;
+  document.getElementById('audio-progress-bar').style.width = pct + '%';
+  const s = Math.floor(_audioEl.currentTime);
+  const m = Math.floor(s / 60);
+  document.getElementById('audio-time').textContent = `${m}:${String(s % 60).padStart(2, '0')}`;
+}
+
+// Click on progress bar to seek
+document.addEventListener('DOMContentLoaded', () => {
+  const wrap = document.querySelector('.arc-audio-progress-wrap');
+  if (wrap) {
+    wrap.addEventListener('click', e => {
+      if (!_audioEl || !_audioEl.duration) return;
+      const rect = wrap.getBoundingClientRect();
+      const pct  = (e.clientX - rect.left) / rect.width;
+      _audioEl.currentTime = pct * _audioEl.duration;
+    });
+  }
+});
+
+function drawWaveform() {
+  if (!_analyser) return;
+  const canvas = document.getElementById('audio-canvas');
+  if (!canvas) return;
+  const ctx    = canvas.getContext('2d');
+  const W      = canvas.width;
+  const H      = canvas.height;
+  const data   = new Uint8Array(_analyser.frequencyBinCount);
+
+  function frame() {
+    _rafId = requestAnimationFrame(frame);
+    _analyser.getByteFrequencyData(data);
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#0a0c0f';
+    ctx.fillRect(0, 0, W, H);
+
+    const barCount = data.length;
+    const barW     = W / barCount;
+    const accent   = '#3a5a7a';
+    const accentHi = '#5a9fc5';
+
+    for (let i = 0; i < barCount; i++) {
+      const v   = data[i] / 255;
+      const h   = v * H;
+      const x   = i * barW;
+      ctx.fillStyle = v > 0.6 ? accentHi : accent;
+      ctx.fillRect(x, H - h, barW - 1, h);
+    }
+  }
+  frame();
+}
+
+function resizeCanvas() {
+  const canvas = document.getElementById('audio-canvas');
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width  = rect.width  || 220;
+  canvas.height = rect.height || 160;
+}
+
+window.addEventListener('resize', resizeCanvas);
